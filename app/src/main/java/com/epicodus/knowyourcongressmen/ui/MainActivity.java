@@ -1,10 +1,10 @@
 package com.epicodus.knowyourcongressmen.ui;
 
 import android.app.AlertDialog;
+import android.app.ListActivity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v4.app.ActivityCompatApi23;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.epicodus.knowyourcongressmen.R;
+import com.epicodus.knowyourcongressmen.adapters.RepAdapter;
 import com.epicodus.knowyourcongressmen.models.LocalRepresentation;
 import com.epicodus.knowyourcongressmen.models.Representative;
 import com.squareup.okhttp.Call;
@@ -35,15 +36,17 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends ListActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private String mZipcode;
     private ArrayList<Representative> mRepresentatives;
+    private RepAdapter mAdapter;
 
-    @Bind(R.id.zipCodeInput) EditText mZipcCodeInput;
+    @Bind(R.id.zipCodeInput) EditText mZipCodeInput;
     @Bind(R.id.submitButton) Button mSubmitButton;
+    //private ListView mRepList = (ListView) findViewById(android.R.id.list);
 
 
     @Override
@@ -54,18 +57,34 @@ public class MainActivity extends AppCompatActivity {
 
         mRepresentatives = new ArrayList<Representative>();
 
+        mAdapter = new RepAdapter(this, mRepresentatives);
+        setListAdapter(mAdapter);
+
         mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mZipcode = mZipcCodeInput.getText().toString();
+                mZipcode = mZipCodeInput.getText().toString();
                 getRepresentatives(mZipcode);
+                toggleViews();
             }
         });
     }
 
+    private void toggleViews() {
+        if (mZipCodeInput.getVisibility() == View.VISIBLE) {
+            mZipCodeInput.setVisibility(View.INVISIBLE);
+            mSubmitButton.setVisibility(View.INVISIBLE);
+            //mRepList.setVisibility(View.VISIBLE);
+        } else {
+            mZipCodeInput.setVisibility(View.VISIBLE);
+            mSubmitButton.setVisibility(View.VISIBLE);
+            //mRepList.setVisibility(View.INVISIBLE);
+        }
+    }
+
     private void getRepresentatives(String zipcode) {
         String apiKey = "b13ce9f96c064ebfaadc9ffe944b33a0";
-        String url = "congress.api.sunlightfoundation.com/legislators/locate?zip=" + zipcode + "&apikey=" + apiKey;
+        String url = "https://congress.api.sunlightfoundation.com/legislators/locate?zip=" + zipcode + "&apikey=" + apiKey;
 
         if (isNetworkAvailable()) {
 
@@ -90,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    updateDisplay();
+                                    mAdapter.notifyDataSetChanged();
                                 }
                             });
                         } else {
@@ -99,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         Log.e(TAG, "OH NO! IOException caught.");
                     } catch (JSONException e) {
-                        Log.e(TAG, "OH NO! IOException caught.");
+                        Log.e(TAG, "OH NO! JSONException caught.");
                     }
                 }
             });
@@ -109,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getLocalRepDetails(String jsonData) throws JSONException {
-        JSONArray representatives = new JSONArray(jsonData);
+        JSONObject data = new JSONObject(jsonData);
+        JSONArray representatives = data.getJSONArray("results");
         for (int index = 0; index < representatives.length(); index++) {
             JSONObject representativeJSON = representatives.getJSONObject(index);
             String repName = representativeJSON.getString("first_name") + " "

@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:id="@android:id/list"
         android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:layout_below="@+id/titleText"/>
+        android:visibility="visible"
+        android:layout_below="@+id/zipCodeInput"/>
 
 </RelativeLayout>
