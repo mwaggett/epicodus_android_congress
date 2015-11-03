@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:id="@+id/repLayout"
+                android:background="#806C6C6C">
 
     <TextView
         android:layout_width="wrap_content"
@@ -12,19 +14,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_margin="10dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Gender"
-        android:id="@+id/repGender"
-        android:layout_alignTop="@+id/repName"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="39dp"
-        android:layout_marginEnd="39dp"/>
+        android:layout_margin="10dp"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,20 +23,36 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Party"
         android:id="@+id/repParty"
-        android:layout_below="@+id/repName"
-        android:layout_alignLeft="@+id/repName"
-        android:layout_alignStart="@+id/repName"
-        android:layout_margin="0dp"/>
+        android:layout_alignBottom="@+id/repName"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Gender"
+        android:id="@+id/repGender"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/repName"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Birthday"
         android:id="@+id/repBirthday"
-        android:layout_below="@+id/repParty"
-        android:layout_alignLeft="@+id/repParty"
-        android:layout_alignStart="@+id/repParty"
-        android:layout_margin="0dp"
-        android:layout_marginTop="10dp"/>
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/repName"
+        android:layout_toRightOf="@+id/repGender"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="40dp"/>
+
 </RelativeLayout>

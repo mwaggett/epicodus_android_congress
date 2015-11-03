@@ -1,10 +1,12 @@
 package com.epicodus.knowyourcongressmen.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.epicodus.knowyourcongressmen.R;
@@ -43,6 +45,7 @@ public class RepAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.rep_info, null);
             holder = new ViewHolder();
+            holder.mRepLayout = (RelativeLayout) convertView.findViewById(R.id.repLayout);
             holder.mRepName = (TextView) convertView.findViewById(R.id.repName);
             holder.mRepParty = (TextView) convertView.findViewById(R.id.repParty);
             holder.mRepGender = (TextView) convertView.findViewById(R.id.repGender);
@@ -60,10 +63,19 @@ public class RepAdapter extends BaseAdapter{
         holder.mRepGender.setText(rep.getGender());
         holder.mRepBirthday.setText(rep.getBirthday());
 
+        if (rep.getParty().equals("D")) {
+            holder.mRepLayout.setBackgroundColor(Color.parseColor("#800099FF"));
+        } else if (rep.getParty().equals("R")) {
+            holder.mRepLayout.setBackgroundColor(Color.parseColor("#80CC0000"));
+        } else {
+            holder.mRepLayout.setBackgroundColor(Color.parseColor("#806C6C6C"));
+        }
+
         return convertView;
     }
 
     public static class ViewHolder {
+        RelativeLayout mRepLayout;
         TextView mRepName;
         TextView mRepBirthday;
         TextView mRepGender;
