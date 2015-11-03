@@ -137,6 +137,7 @@ public class MainActivity extends ListActivity {
     }
 
     private void getLocalRepDetails(String jsonData) throws JSONException {
+        mRepresentatives.clear();
         JSONObject data = new JSONObject(jsonData);
         JSONArray representatives = data.getJSONArray("results");
         for (int index = 0; index < representatives.length(); index++) {
