@@ -5,11 +5,8 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +14,6 @@ import android.widget.ListView;
 
 import com.epicodus.knowyourcongressmen.R;
 import com.epicodus.knowyourcongressmen.adapters.RepAdapter;
-import com.epicodus.knowyourcongressmen.models.LocalRepresentation;
 import com.epicodus.knowyourcongressmen.models.Representative;
 import com.squareup.okhttp.Call;
 import com.squareup.okhttp.Callback;
@@ -30,7 +26,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -46,7 +41,8 @@ public class MainActivity extends ListActivity {
 
     @Bind(R.id.zipCodeInput) EditText mZipCodeInput;
     @Bind(R.id.submitButton) Button mSubmitButton;
-    //private ListView mRepList = (ListView) findViewById(android.R.id.list);
+    @Bind(R.id.newSearchButton) Button mNewSearchButton;
+    private ListView mRepList;
 
 
     @Override
@@ -54,6 +50,8 @@ public class MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        mRepList = (ListView) findViewById(android.R.id.list);
 
         mRepresentatives = new ArrayList<Representative>();
 
@@ -66,6 +64,14 @@ public class MainActivity extends ListActivity {
                 mZipcode = mZipCodeInput.getText().toString();
                 getRepresentatives(mZipcode);
                 toggleViews();
+                mZipCodeInput.setText("");
+            }
+        });
+
+        mNewSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleViews();
             }
         });
     }
@@ -74,11 +80,14 @@ public class MainActivity extends ListActivity {
         if (mZipCodeInput.getVisibility() == View.VISIBLE) {
             mZipCodeInput.setVisibility(View.INVISIBLE);
             mSubmitButton.setVisibility(View.INVISIBLE);
-            //mRepList.setVisibility(View.VISIBLE);
+            mRepList.setVisibility(View.VISIBLE);
+            mNewSearchButton.setVisibility(View.VISIBLE);
+
         } else {
             mZipCodeInput.setVisibility(View.VISIBLE);
             mSubmitButton.setVisibility(View.VISIBLE);
-            //mRepList.setVisibility(View.INVISIBLE);
+            mRepList.setVisibility(View.INVISIBLE);
+            mNewSearchButton.setVisibility(View.INVISIBLE);
         }
     }
 
