@@ -6,6 +6,7 @@ public class Representative {
     private String mParty;
     private String mGender;
     private String mBirthday;
+    private String mPhoneNumber;
 
     public Representative() {
     }
@@ -42,7 +43,15 @@ public class Representative {
         mBirthday = birthday;
     }
 
-//    public int getAge() {
+    public String getPhoneNumber() {
+        return mPhoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        mPhoneNumber = phoneNumber;
+    }
+
+    //    public int getAge() {
 //        int year = Integer.parseInt(mBirthday.substring(0,4));
 //        int month = Integer.parseInt(mBirthday.substring(5,7));
 //        int day = Integer.parseInt(mBirthday.substring(8,10));

@@ -50,6 +50,7 @@ public class RepAdapter extends BaseAdapter{
             holder.mRepParty = (TextView) convertView.findViewById(R.id.repParty);
             holder.mRepGender = (TextView) convertView.findViewById(R.id.repGender);
             holder.mRepBirthday = (TextView) convertView.findViewById(R.id.repBirthday);
+            holder.mCallLink = (TextView) convertView.findViewById(R.id.callLink);
 
             convertView.setTag(holder);
         } else {
@@ -62,6 +63,7 @@ public class RepAdapter extends BaseAdapter{
         holder.mRepParty.setText(rep.getParty());
         holder.mRepGender.setText(rep.getGender());
         holder.mRepBirthday.setText(rep.getBirthday());
+        holder.mCallLink.setText(rep.getPhoneNumber());
 
         if (rep.getParty().equals("D")) {
             holder.mRepLayout.setBackgroundColor(Color.parseColor("#800099FF"));
@@ -80,5 +82,6 @@ public class RepAdapter extends BaseAdapter{
         TextView mRepBirthday;
         TextView mRepGender;
         TextView mRepParty;
+        TextView mCallLink;
     }
 }

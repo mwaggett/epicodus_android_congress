@@ -55,4 +55,15 @@
         android:layout_marginLeft="40dp"
         android:layout_marginStart="40dp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Call Your Rep"
+        android:id="@+id/callLink"
+        android:layout_alignBottom="@+id/repBirthday"
+        android:layout_alignRight="@+id/repParty"
+        android:layout_alignEnd="@+id/repParty"
+        android:textColor="@android:color/white"/>
+
 </RelativeLayout>
