@@ -80,6 +80,19 @@ public class RepAdapter extends BaseAdapter{
             holder.mRepLayout.setBackgroundColor(Color.parseColor("#806C6C6C"));
         }
 
+        holder.mRepName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String websiteString = rep.getWebsite();
+                Uri website = Uri.parse(websiteString);
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, website);
+
+                if(isIntentSafe(webIntent)) {
+                    mContext.startActivity(webIntent);
+                }
+            }
+        });
+
         holder.mViewOfficeLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

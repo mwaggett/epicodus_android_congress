@@ -9,13 +9,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Representative Name"
+        android:text="Rep Name"
         android:id="@+id/repName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_margin="10dp"
         android:textColor="@android:color/white"/>
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="&ndash;&gt; View Website"-->
+        <!--android:id="@+id/viewWebsiteLink"-->
+        <!--android:textSize="15sp"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--android:layout_alignBottom="@+id/repName"-->
+        <!--android:layout_toRightOf="@+id/repName"/>-->
 
     <TextView
         android:layout_width="wrap_content"

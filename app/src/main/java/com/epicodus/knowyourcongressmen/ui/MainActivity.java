@@ -149,6 +149,7 @@ public class MainActivity extends ListActivity {
             String repBirthday = representativeJSON.getString("birthday");
             String repOfficeLocation = representativeJSON.getString("office");
             String repPhoneNumber = representativeJSON.getString("phone");
+            String repWebsite = representativeJSON.getString("website");
             Representative representative = new Representative();
             representative.setName(repName);
             representative.setParty(repParty);
@@ -156,6 +157,7 @@ public class MainActivity extends ListActivity {
             representative.setBirthday(repBirthday);
             representative.setOfficeLocation(repOfficeLocation);
             representative.setPhoneNumber(repPhoneNumber);
+            representative.setWebsite(repWebsite);
 
             mRepresentatives.add(representative);
         }

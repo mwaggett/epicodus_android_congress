@@ -8,6 +8,7 @@ public class Representative {
     private String mBirthday;
     private String mOfficeLocation;
     private String mPhoneNumber;
+    private String mWebsite;
 
     public Representative() {
     }
@@ -58,6 +59,14 @@ public class Representative {
 
     public void setPhoneNumber(String phoneNumber) {
         mPhoneNumber = phoneNumber;
+    }
+
+    public String getWebsite() {
+        return mWebsite;
+    }
+
+    public void setWebsite(String website) {
+        mWebsite = website;
     }
 
     //    public int getAge() {
