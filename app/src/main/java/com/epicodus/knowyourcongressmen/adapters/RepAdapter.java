@@ -56,6 +56,7 @@ public class RepAdapter extends BaseAdapter{
             holder.mRepParty = (TextView) convertView.findViewById(R.id.repParty);
             holder.mRepGender = (TextView) convertView.findViewById(R.id.repGender);
             holder.mRepBirthday = (TextView) convertView.findViewById(R.id.repBirthday);
+            holder.mViewOfficeLink = (TextView) convertView.findViewById(R.id.viewOfficeLink);
             holder.mCallLink = (TextView) convertView.findViewById(R.id.callLink);
 
             convertView.setTag(holder);
@@ -79,6 +80,19 @@ public class RepAdapter extends BaseAdapter{
             holder.mRepLayout.setBackgroundColor(Color.parseColor("#806C6C6C"));
         }
 
+        holder.mViewOfficeLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String officeString = rep.getOfficeLocation().replaceAll(" ", "+");
+                Uri location = Uri.parse("geo:0,0?q=" + officeString);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+
+                if(isIntentSafe(mapIntent)) {
+                    mContext.startActivity(mapIntent);
+                }
+            }
+        });
+
         holder.mCallLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,11 +100,7 @@ public class RepAdapter extends BaseAdapter{
                 Uri phoneNumber = Uri.parse("tel:" + phoneString);
                 Intent callIntent = new Intent(Intent.ACTION_DIAL, phoneNumber);
 
-                PackageManager packageManager = mContext.getPackageManager();
-                List<ResolveInfo> activities = packageManager.queryIntentActivities(callIntent, 0);
-                boolean isIntentSafe = activities.size() > 0;
-
-                if (isIntentSafe) {
+                if (isIntentSafe(callIntent)) {
                     mContext.startActivity(callIntent);
                 }
             }
@@ -99,12 +109,19 @@ public class RepAdapter extends BaseAdapter{
         return convertView;
     }
 
+    private boolean isIntentSafe(Intent intent) {
+        PackageManager packageManager = mContext.getPackageManager();
+        List<ResolveInfo> activities = packageManager.queryIntentActivities(intent, 0);
+        return activities.size() > 0;
+    }
+
     public static class ViewHolder {
         RelativeLayout mRepLayout;
         TextView mRepName;
         TextView mRepBirthday;
         TextView mRepGender;
         TextView mRepParty;
+        TextView mViewOfficeLink;
         TextView mCallLink;
     }
 }

@@ -6,6 +6,7 @@ public class Representative {
     private String mParty;
     private String mGender;
     private String mBirthday;
+    private String mOfficeLocation;
     private String mPhoneNumber;
 
     public Representative() {
@@ -41,6 +42,14 @@ public class Representative {
 
     public void setBirthday(String birthday) {
         mBirthday = birthday;
+    }
+
+    public String getOfficeLocation() {
+        return mOfficeLocation;
+    }
+
+    public void setOfficeLocation(String officeLocation) {
+        mOfficeLocation = officeLocation;
     }
 
     public String getPhoneNumber() {

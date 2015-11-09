@@ -39,8 +39,8 @@
         android:textSize="15sp"
         android:textColor="@android:color/white"
         android:layout_below="@+id/repName"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -52,18 +52,33 @@
         android:textColor="@android:color/white"
         android:layout_below="@+id/repName"
         android:layout_toRightOf="@+id/repGender"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp"/>
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Call Your Rep"
-        android:id="@+id/callLink"
-        android:layout_alignBottom="@+id/repBirthday"
-        android:layout_alignRight="@+id/repParty"
-        android:layout_alignEnd="@+id/repParty"
-        android:textColor="@android:color/white"/>
+        android:text="View Office"
+        android:id="@+id/viewOfficeLink"
+        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:layout_below="@+id/repName"
+        android:layout_toRightOf="@+id/repBirthday"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceSmall"
+    android:text="Phone Number"
+    android:id="@+id/callLink"
+    android:textSize="15sp"
+    android:textColor="@android:color/white"
+    android:layout_below="@+id/repName"
+    android:layout_toRightOf="@+id/viewOfficeLink"
+    android:layout_marginLeft="20dp"
+    android:layout_marginStart="20dp"/>
 
 </RelativeLayout>
